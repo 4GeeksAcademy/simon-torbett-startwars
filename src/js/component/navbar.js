@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context)
+	
 	return (
-		<nav className="navbar bg-body-tertiary">
-  <div className="container-fluid">
-	<Link to="/">
-    <a className="navbar-brand" href="#">
-      <img src="https://icon-library.com/images/star-wars-logo-icon/star-wars-logo-icon-9.jpg" alt="Logo" width="80" height="70" class="d-inline-block align-text-top"></img>
-    </a>
-	</Link>
-	<div className="btn-group">
-  <button type="button" className="btn btn-danger">Action</button>
-  <button type="button" className="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-    <span className="visually-hidden">Toggle Dropdown</span>
-  </button>
-  <ul className="dropdown-menu">
-    <li><a className="dropdown-item" href="#">Action</a></li>
-    <li><a className="dropdown-item" href="#">Another action</a></li>
-    <li><a className="dropdown-item" href="#">Something else here</a></li>
-    <li><a className="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
-  </div>
-
-</nav>
+		<nav className="navbar bg-light mb-3">
+			<div className="container">
+				<Link to="/" >
+					<img style={{ width: "100px" }} src="https://static.wikia.nocookie.net/esstarwars/images/9/9d/Jedi_symbol.svg/revision/latest?cb=20210502203152"></img>
+				</Link>
+				<div className="dropdown ml-auto btn btn-ligth">
+  					<button 
+						className="btn btn-dark bg-black  dropdown-toggle" 
+						type="button" 
+						data-bs-toggle="dropdown" 
+						aria-expanded="false">
+    					Favorites {store.favorites.length}
+  					</button>
+					<ul className="dropdown-menu dropdown-menu-end">
+						{
+							store.favorites.map((favorite)=> {
+								return (<li 
+											className="dropdown-item d-flex justify-content-between">{favorite.properties.name}
+											<i className="fa-solid fa-trash"
+											onClick={()=> actions.getUpdateFavorite(favorite)}></i>
+										</li>)
+							})
+						}
+												
+					</ul>
+				</div>				
+			</div>
+		</nav>
 	);
 };

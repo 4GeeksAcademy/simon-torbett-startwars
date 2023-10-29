@@ -1,3 +1,15 @@
 /* 
     General Styles
 */
+body{
+    background-color: rgba(47, 4, 92, 0.968);
+    
+}
+.carousel {
+    height: auto;
+    width: 100%;
+    border: none;
+    background: rgb(209, 4, 4);
+    overflow-x: scroll;
+}
+

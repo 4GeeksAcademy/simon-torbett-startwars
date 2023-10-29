@@ -2,16 +2,16 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-
-import {Front} from "./views/Front";
-//import { Demo } from "./views/demo";
-//import { Single } from "./views/single";
+import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
-//import { Demo } from "./views/demo";
-import Solo from "./views/Solo";
+
+
+import Home from "./views/Home.jsx";
+import Characters from "./views/Characters.jsx";
+import Planets from "./views/Planets.jsx";
+import Vehicles from "./views/Vehicles.jsx";
 
 //create your first component
 const Layout = () => {
@@ -25,11 +25,13 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
-						<Route path="/" element={<Front />} />
-						<Route path="/Solo" element={<Solo/>}/>
+						<Route path="/" element={<Home />} />
+						<Route path="/character/:id" element={<Characters />} />
+						<Route path="/planet/:id" element={<Planets />} />
+						<Route path="/vehicle/:id" element={<Vehicles />} />
+						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
-					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
 		</div>
